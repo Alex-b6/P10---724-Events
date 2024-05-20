@@ -118,7 +118,12 @@ p {
     color: white;
     text-decoration: none;
     display: inline;
-    margin: 2px;
+    padding-inline: 15px;
+    border-right: solid 1px #8789ff;
+
+    &:last-child {
+      border: none;
+    }
   }
   margin-bottom: 50px;
 }
