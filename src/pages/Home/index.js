@@ -13,7 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData();
+  const dataSort = data?.events.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+  );
   return <>
     <header>
       <Menu />
@@ -116,13 +119,13 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+        {dataSort ? <EventCard
+            imageSrc={dataSort[0].cover}
+            title={dataSort[0].title}
+            date={new Date(dataSort[0].date)}
+            small
+            label={dataSort[0].type}
+            /> : <p>Loading...</p>}
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
@@ -131,16 +134,16 @@ const Page = () => {
         <div>contact@724events.com</div>
         <div>
           <a href="#twitch">
-            <Icon name="twitch" />
+            <Icon name="twitch" alt="logo twitch"/>
           </a>
           <a href="#facebook">
-            <Icon name="facebook" />
+            <Icon name="facebook" alt="logo Facebook"/>
           </a>
           <a href="#twitter">
-            <Icon name="twitter" />
+            <Icon name="twitter" alt="logo Twitter"/>
           </a>
           <a href="#youtube">
-            <Icon name="youtube" />
+            <Icon name="youtube" alt="logo Youtube"/>
           </a>
         </div>
       </div>
