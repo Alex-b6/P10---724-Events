@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
-// Changement de la const avec "promise.resolve"
-const mockContactApi = () => Promise.resolve()
+// Changement de la const avec "new promise((resolve)"
+const mockContactApi = () =>
+  new Promise((resolve) => {
+      setTimeout(resolve, 666);
+  });
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
@@ -31,9 +34,9 @@ const Form = ({ onSuccess, onError }) => {
           <Field placeholder="" label="Nom" />
           <Field placeholder="" label="Prénom" />
           <Select
-            selection={["Personel", "Entreprise"]}
+            selection={["Personnel", "Entreprise"]}
             onChange={() => null}
-            label="Personel / Entreprise"
+            label="Personnel / Entreprise"
             type="large"
             titleEmpty
           />
