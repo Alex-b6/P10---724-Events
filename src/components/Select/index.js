@@ -15,7 +15,6 @@ const Select = ({
 }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
-
   const changeValue = (newValue) => {
     onChange(newValue);
     setValue(newValue);
@@ -32,7 +31,10 @@ const Select = ({
           {!collapsed && (
             <>
               {!titleEmpty && (
-                <li onClick={() => changeValue(null)}>
+                <li onClick={() => {
+                  changeValue(null)
+                  setCollapsed(!collapsed)
+                  }}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
                   Toutes
                 </li>
@@ -59,7 +61,7 @@ const Select = ({
             e.preventDefault();
             setCollapsed(!collapsed);
           }}
-          aria-label="collapse button"
+          alt="Open/Close button"
         >
           <Arrow />
         </button>
